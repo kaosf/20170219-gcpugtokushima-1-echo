@@ -96,6 +96,8 @@ func handleTask(w http.ResponseWriter, r *http.Request) {
 	// テキストメッセージの場合
 	case *linebot.TextMessage:
 		responseMessage = linebot.NewTextMessage(message.Text)
+	case *linebot.StickerMessage:
+		responseMessage = linebot.NewStickerMessage(message.PackageID, message.StickerID)
 	default:
 		responseMessage = linebot.NewTextMessage("未対応です。。。")
 	}
